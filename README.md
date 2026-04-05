@@ -31,28 +31,6 @@ What those commands do:
 
 Open `http://localhost:3000` in your browser after the servers start.
 
-## Free hosting setup
-
-The easiest free path for judges is:
-
-- Backend on Render as a Web Service
-- Frontend on Render as a Static Site
-- Database on MongoDB Atlas free M0 cluster
-
-Use these settings:
-
-- Backend root directory: `backend`
-- Backend build command: `npm install`
-- Backend start command: `node server.js`
-- Frontend root directory: `frontend`
-- Frontend build command: `npm install && npm run build`
-- Frontend publish directory: `dist`
-
-Set these environment variables in the hosting dashboard:
-
-- Backend: `MONGO_URI`, `JWT_SECRET`, `GEMINI_API_KEY`, `GOOGLE_CLIENT_ID`, `EMAIL_USER`, `EMAIL_PASS`, `FRONTEND_URL`
-- Frontend: `VITE_API_URL`, `VITE_GOOGLE_CLIENT_ID`
-
 ## Demo login for judges
 
 The backend seeds these accounts automatically:
