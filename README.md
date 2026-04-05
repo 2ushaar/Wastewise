@@ -31,7 +31,7 @@ What those commands do:
 
 Open `http://localhost:3000` in your browser after the servers start.
 
-## Demo login for judges
+## Demo login
 
 The backend seeds these accounts automatically:
 
