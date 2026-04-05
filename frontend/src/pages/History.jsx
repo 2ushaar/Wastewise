@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuthStore } from '../store/authStore';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const History = () => {
   const [pickups, setPickups] = useState([]);
@@ -10,7 +12,7 @@ const History = () => {
   useEffect(() => {
     const fetchPickups = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/pickups', {
+        const res = await fetch(`${API_URL}/api/pickups`, {
           headers: { 'Authorization': `Bearer ${user?.token}` }
         });
         const data = await res.json();
@@ -26,11 +28,11 @@ const History = () => {
 
   const mapIcon = (category) => {
     switch (category?.toLowerCase()) {
-      case 'plastic': return '♻️';
-      case 'organic': return '🌱';
-      case 'ewaste': return '💻';
-      case 'hazardous': return '☢️';
-      default: return '🗑️';
+      case 'plastic': return 'â™»ï¸';
+      case 'organic': return 'ðŸŒ±';
+      case 'ewaste': return 'ðŸ’»';
+      case 'hazardous': return 'â˜¢ï¸';
+      default: return 'ðŸ—‘ï¸';
     }
   };
 
@@ -51,7 +53,7 @@ const History = () => {
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
             className="text-6xl mb-4 grayscale decortaion-0"
           >
-            📋
+            ðŸ“‹
           </motion.div>
           <h1 className="text-4xl font-extrabold text-zinc-800 dark:text-zinc-100 drop-shadow-md">My Pickups</h1>
           <p className="text-zinc-500 mt-2 text-lg">Track your currently scheduled fleets and view your historical impact.</p>
@@ -88,7 +90,7 @@ const History = () => {
                   <div className="flex-1 text-center md:text-left">
                     <div className="flex flex-col md:flex-row md:items-center gap-2 mb-1">
                       <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 uppercase tracking-wide">{pickup.category}</h3>
-                      <span className="hidden md:block text-zinc-400 dark:text-zinc-600">•</span>
+                      <span className="hidden md:block text-zinc-400 dark:text-zinc-600">â€¢</span>
                       <span className="text-zinc-500 dark:text-zinc-400 font-mono text-sm">{pickup.pickupId || pickup._id}</span>
                     </div>
                     <p className="text-sm font-bold text-zinc-500 tracking-widest uppercase mt-1">
@@ -113,3 +115,4 @@ const History = () => {
 };
 
 export default History;
+

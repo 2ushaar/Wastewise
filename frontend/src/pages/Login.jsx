@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuthStore } from '../store/authStore';
@@ -14,12 +14,14 @@ const SleekAnimalBackground = () => (
       <path d="M0,800 Q250,650 500,800 T1000,800" fill="none" stroke="currentColor" strokeWidth="0.25" opacity="0.1" />
     </svg>
     
-    <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute text-5xl opacity-40 dark:opacity-20 top-[18%] left-[20%]">🦊</motion.div>
-    <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} className="absolute text-6xl opacity-30 dark:opacity-10 top-[28%] right-[15%]">🐢</motion.div>
-    <motion.div animate={{ y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }} className="absolute text-4xl opacity-50 dark:opacity-30 bottom-[35%] left-[10%]">🦜</motion.div>
-    <motion.div animate={{ y: [0, -12, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }} className="absolute text-7xl opacity-20 dark:opacity-5 bottom-[20%] right-[25%]">🐘</motion.div>
+    <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute text-5xl opacity-40 dark:opacity-20 top-[18%] left-[20%]">ðŸ¦Š</motion.div>
+    <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} className="absolute text-6xl opacity-30 dark:opacity-10 top-[28%] right-[15%]">ðŸ¢</motion.div>
+    <motion.div animate={{ y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }} className="absolute text-4xl opacity-50 dark:opacity-30 bottom-[35%] left-[10%]">ðŸ¦œ</motion.div>
+    <motion.div animate={{ y: [0, -12, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }} className="absolute text-7xl opacity-20 dark:opacity-5 bottom-[20%] right-[25%]">ðŸ˜</motion.div>
   </div>
 );
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -34,7 +36,7 @@ const Login = () => {
     setLoading(true);
     
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -42,7 +44,7 @@ const Login = () => {
       const data = await res.json();
       
       if (res.ok) {
-        setWelcomeMsg(`Welcome back, ${data.name.split(' ')[0]}! 🌍`);
+        setWelcomeMsg(`Welcome back, ${data.name.split(' ')[0]}! ðŸŒ`);
         setTimeout(() => {
           login({ email: data.email, name: data.name, role: data.role, token: data.token, points: data.points });
           navigate(data.role === 'admin' ? '/admin' : '/dashboard');
@@ -59,7 +61,7 @@ const Login = () => {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const res = await fetch('http://localhost:5000/api/auth/google', {
+      const res = await fetch(`${API_URL}/api/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ credential: credentialResponse.credential })
@@ -67,7 +69,7 @@ const Login = () => {
       const data = await res.json();
       
       if (res.ok) {
-        setWelcomeMsg(`Welcome, ${data.name.split(' ')[0]}! 🌿`);
+        setWelcomeMsg(`Welcome, ${data.name.split(' ')[0]}! ðŸŒ¿`);
         setTimeout(() => {
           login({ email: data.email, name: data.name, role: data.role, token: data.token, points: data.points });
           navigate('/dashboard');
@@ -100,14 +102,14 @@ const Login = () => {
               exit={{ opacity: 0 }}
               className="flex flex-col items-center text-center space-y-4"
             >
-              <div className="text-6xl mb-2 animate-bounce grayscale">🌍</div>
+              <div className="text-6xl mb-2 animate-bounce grayscale">ðŸŒ</div>
               <h2 className="text-3xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">{welcomeMsg}</h2>
               <p className="text-sm font-bold text-zinc-500 tracking-widest uppercase animate-pulse">Entering WasteWise...</p>
             </motion.div>
           ) : (
             <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="text-center mb-6">
-                <motion.div className="text-5xl mb-3 grayscale opacity-80 decoration-0">🌍</motion.div>
+                <motion.div className="text-5xl mb-3 grayscale opacity-80 decoration-0">ðŸŒ</motion.div>
                 <h1 className="text-3xl font-extrabold text-zinc-800 dark:text-zinc-100">Sign In</h1>
                 <p className="text-zinc-500 mt-2 text-sm">Welcome back to the WasteWise ecosystem</p>
               </div>
@@ -130,7 +132,7 @@ const Login = () => {
                     type="password" 
                     required
                     className="w-full px-4 py-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-zinc-800 dark:text-zinc-200 shadow-inner"
-                    placeholder="••••••••"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -143,7 +145,7 @@ const Login = () => {
                   disabled={loading}
                   className="w-full bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-emerald-500 transition-colors shadow-lg focus:ring-2 focus:ring-emerald-400 flex justify-center items-center"
                 >
-                  {loading ? <span className="animate-spin text-xl">⚪</span> : 'Sign In'}
+                  {loading ? <span className="animate-spin text-xl">âšª</span> : 'Sign In'}
                 </motion.button>
               </form>
 
@@ -175,3 +177,4 @@ const Login = () => {
 };
 
 export default Login;
+

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
@@ -18,14 +18,14 @@ L.Marker.prototype.options.icon = DefaultIcon;
 // Dynamic Background Environmental Animation
 const FloatingIcons = () => {
   const icons = [
-    { emoji: '🍃', size: 'text-3xl', left: '10%', delay: 0 },
-    { emoji: '🌿', size: 'text-5xl', left: '25%', delay: 2 },
-    { emoji: '♻️', size: 'text-4xl', left: '50%', delay: 5 },
-    { emoji: '🌍', size: 'text-6xl', left: '75%', delay: 1 },
-    { emoji: '🌎', size: 'text-5xl', left: '90%', delay: 3 },
-    { emoji: '🌲', size: 'text-4xl', left: '40%', delay: 6 },
-    { emoji: '🌳', size: 'text-7xl', left: '5%', delay: 4 },
-    { emoji: '🌻', size: 'text-3xl', left: '85%', delay: 7 },
+    { emoji: 'ðŸƒ', size: 'text-3xl', left: '10%', delay: 0 },
+    { emoji: 'ðŸŒ¿', size: 'text-5xl', left: '25%', delay: 2 },
+    { emoji: 'â™»ï¸', size: 'text-4xl', left: '50%', delay: 5 },
+    { emoji: 'ðŸŒ', size: 'text-6xl', left: '75%', delay: 1 },
+    { emoji: 'ðŸŒŽ', size: 'text-5xl', left: '90%', delay: 3 },
+    { emoji: 'ðŸŒ²', size: 'text-4xl', left: '40%', delay: 6 },
+    { emoji: 'ðŸŒ³', size: 'text-7xl', left: '5%', delay: 4 },
+    { emoji: 'ðŸŒ»', size: 'text-3xl', left: '85%', delay: 7 },
   ];
 
   return (
@@ -70,6 +70,8 @@ function LocationMarker({ position, setPosition }) {
 
   return position === null ? null : <Marker position={position}></Marker>;
 }
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const Pickup = () => {
   const [formData, setFormData] = useState({ category: '', volume: '', date: '' });
@@ -137,7 +139,7 @@ const Pickup = () => {
     if (!aiInput.trim()) return;
     setAiLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/chat/ask', {
+      const res = await fetch(`${API_URL}/api/chat/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -182,7 +184,7 @@ const Pickup = () => {
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 className="text-5xl mb-4 grayscale"
               >
-                🚛
+                ðŸš›
               </motion.div>
               <h1 className="text-3xl font-extrabold text-zinc-100">Schedule Collection</h1>
               <p className="text-zinc-500 mt-2 text-sm">Deploy a WasteWise autonomous fleet vehicle securely</p>
@@ -196,7 +198,7 @@ const Pickup = () => {
                 <div className="flex justify-between items-center">
                   <label className="block text-sm font-medium text-zinc-400 mb-2">Waste Category</label>
                   <button type="button" onClick={() => setShowAi(!showAi)} className="text-xs text-emerald-400 font-bold hover:text-emerald-300 transition-colors drop-shadow-[0_0_5px_rgba(52,211,153,0.3)]">
-                    🌱 Unsure? Ask EcoBot!
+                    ðŸŒ± Unsure? Ask EcoBot!
                   </button>
                 </div>
 
@@ -241,7 +243,7 @@ const Pickup = () => {
               <div className="flex justify-between items-center">
                 <label className="block text-sm font-medium text-zinc-400 mb-2">Extraction Coordinates</label>
                 <button type="button" onClick={getExactLocation} className="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-3 py-1.5 rounded-lg border border-zinc-700 transition-colors flex items-center gap-2 shadow-inner">
-                  <span className="text-emerald-500 animate-pulse">●</span> Auto-Locate
+                  <span className="text-emerald-500 animate-pulse">â—</span> Auto-Locate
                 </button>
               </div>
 
@@ -287,7 +289,7 @@ const Pickup = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-zinc-900/60 backdrop-blur-xl p-10 rounded-3xl border border-zinc-800 shadow-2xl text-center space-y-4 relative z-10"
           >
-            <div className="text-6xl mb-4 grayscale">🛰️</div>
+            <div className="text-6xl mb-4 grayscale">ðŸ›°ï¸</div>
             <h2 className="text-2xl font-bold text-zinc-100">Dispatched!</h2>
             <p className="text-zinc-400 text-sm">A fleet unit is being routed to [{position?.lat.toFixed(2)}, {position?.lng.toFixed(2)}] for <strong className="uppercase text-emerald-500">{formData.category}</strong>.</p>
             <p className="text-xs text-zinc-500 tracking-widest uppercase mt-6 pt-4 border-t border-zinc-800 animate-pulse">Redirecting to Dashboard...</p>
@@ -299,3 +301,5 @@ const Pickup = () => {
 };
 
 export default Pickup;
+
+
