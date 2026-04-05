@@ -2,6 +2,8 @@
 
 WasteWise is a MERN stack environmental logistics platform with gamified user engagement, pickup tracking, an AI chat assistant, and admin tools for managing users and routes.
 
+![WasteWise demo](demo.png)
+
 ## What is in this repo
 
 - `frontend/` - React + Vite client
