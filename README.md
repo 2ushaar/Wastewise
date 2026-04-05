@@ -1,4 +1,4 @@
-﻿# WasteWise
+# WasteWise
 
 WasteWise is a MERN stack environmental logistics platform with gamified user engagement, pickup tracking, an AI chat assistant, and admin tools for managing users and routes.
 
@@ -12,10 +12,22 @@ WasteWise is a MERN stack environmental logistics platform with gamified user en
 
 ## Local setup
 
+Prerequisites:
+
+- Node.js 18 or newer
+- npm 9 or newer
+
+Run these commands from the repo root:
+
 ```bash
 npm run setup
 npm run dev
 ```
+
+What those commands do:
+
+- `npm run setup` installs dependencies for both `backend/` and `frontend/`
+- `npm run dev` starts the backend on `http://localhost:5000` and the frontend on `http://localhost:3000`
 
 Open `http://localhost:3000` in your browser after the servers start.
 
